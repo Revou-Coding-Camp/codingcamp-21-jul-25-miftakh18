@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+</head>
+
+<body class="bg-stone-50  ">
+
+
+
+    <div class="justify-items-center content-center min-h-screen   ">
+    
+    <div class="  flex flex-col  gap-2 bg-linear-to-t border-1 from-white to-stone-100 p-10 rounded-lg shadow-lg/40">
+     <main >
+        <header> 
+        
+            <h1 class="text-[20px] text-xl font-semibold text-center font-sans antialiased p-0 border">Todo List</h1>
+        </header>
+        <form  class="mb-10">
+            
+            <div class="grid grid-flow-col grid-cols-2 gap-4 my-4">
+                <div class="grid  grid-rows-2">
+                    <label class="font-semibold"> Task</label>
+                    <input type="text" class="border rounded-sm text-[12px] text-center" placeholder="Nama Task" id="todo-input">
+                </div>
+                <div class="grid  grid-rows-2">
+                    <label class="font-semibold">Tanggal Tugas</label>
+                    <input class="border rounded-sm p-2 text-[12px]"  type="date" id="todo-date">
+                </div> 
+         </div>
+         <div class="=   text-center ">
+            <button type="button" class="bg-blue-500 px-[20px] p-1  text-white font-semibold rounded-md  shadow-md/10 mt-2" id="add">+ Tambah</button>
+         </div>
+       
+        </form>
+        </main>
+        <section class="bg-blue-100 rounded p-4">
+            <div class="flex justify-between"> 
+                <button type="button" id="filter" class="px-3 bg-cyan-500  text-white w-30  font-semibold rounded">Filter</button>
+                <button type="button" id="delete-all" class="px-3 rounded bg-red-500 w-30 px-3  font-semibold text-white"> Delete All</button>
+            </div>
+           
+            <table class="w-100 border rounded table-fixed" border="1">
+                 <caption class="caption-top my-5">
+                      <span class="font-semibold">  Taks List</span>
+                </caption>
+                <thead>
+                    <tr >
+                        <th class=" font-semibold pl-4 w-80%" align="left">Task</th>
+                         <th class=" font-semibold  w-80%" align="center">Date</th>
+                        <th class=" font-semibold w-20% pr-4" align="right">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="px-2" id="todo-list">
+                   
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>
