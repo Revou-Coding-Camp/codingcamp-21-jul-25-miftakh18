@@ -9,61 +9,84 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
 </head>
-
-<body class="bg-stone-50  ">
-
-
-
-    <div class="justify-items-center content-center min-h-screen   ">
-    
-    <div class="  flex flex-col  gap-2 bg-linear-to-t border-1 from-white to-stone-100 p-10 rounded-lg shadow-lg/40">
-     <main >
-        <header> 
-        
-            <h1 class="text-[20px] text-xl font-semibold text-center font-sans antialiased p-0 border">Todo List</h1>
-        </header>
-        <form  class="mb-10">
-            
-            <div class="grid grid-flow-col grid-cols-2 gap-4 my-4">
-                <div class="grid  grid-rows-2">
-                    <label class="font-semibold"> Task</label>
-                    <input type="text" class="border rounded-sm text-[12px] text-center" placeholder="Nama Task" id="todo-input">
+<body class="bg-stone-100">
+    <div class="min-h-screen flex justify-center items-center">
+        <div class="container mx-auto px-2 sm:px-4 md:px-8 lg:px-16">
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-2xl border border-gray-200">
+                <main>
+                    <header>
+                        <h1 class="text-2xl sm:text-3xl font-bold text-center font-sans antialiased mb-6 text-gray-800 tracking-wide">Todo List</h1>
+                    </header>
+                    <form class="mb-0 ">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 ">
+                            <div class="grid grid-rows-2  ">
+                                
+                                <input type="text" class="border border-gray-300 rounded-md text-sm text-center p-2 focus:ring-2 focus:ring-blue-400 focus:outline-none w-[100%]" placeholder="Nama Task" id="todo-input">
+                            </div>
+                            <div class="grid grid-rows-2 ">
+                             
+                                <input class="border border-gray-300 rounded-md p-2  text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none" type="date" id="todo-date">
+                            </div>
+                             <div class="grid grid-rows-2">
+                               
+                                <button type="button" class="bg-blue-600 px-1 py-2 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition w-full sm:w-auto" id="add">+ Tambah </button>
+                            </div>
+                        </div>
+                       
+                    </form>
+                </main>
+                <div id="alert-card" class="hidden mb-4">
+                    <div class="flex items-center bg-red-100 border border-red-300 text-red-800 text-sm rounded-lg px-4 py-3 shadow transition-all duration-300" role="alert">
+                      
+                        <span id="alert-message"></span>
+                        <button onclick="document.getElementById('alert-card').classList.add('hidden')" class="ml-auto text-red-500 hover:text-blue-700 font-bold px-2 py-1 rounded transition">×</button>
+                    </div>
                 </div>
-                <div class="grid  grid-rows-2">
-                    <label class="font-semibold">Tanggal Tugas</label>
-                    <input class="border rounded-sm p-2 text-[12px]"  type="date" id="todo-date">
-                </div> 
-         </div>
-         <div class="=   text-center ">
-            <button type="button" class="bg-blue-500 px-[20px] p-1  text-white font-semibold rounded-md  shadow-md/10 mt-2" id="add">+ Tambah</button>
-         </div>
-       
-        </form>
-        </main>
-        <section class="bg-blue-100 rounded p-4">
-            <div class="flex justify-between"> 
-                <button type="button" id="filter" class="px-3 bg-cyan-500  text-white w-30  font-semibold rounded">Filter</button>
-                <button type="button" id="delete-all" class="px-3 rounded bg-red-500 w-30 px-3  font-semibold text-white"> Delete All</button>
+                <section class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="flex flex-col sm:flex-row justify-between gap-4 mb-6">
+                        <div class="flex flex-col sm:flex-row gap-4 mb-2 items-center">
+                            <select id="filter-select" class="border border-gray-300 rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none w-full sm:w-auto px-2">
+                                <option value="all"> Semua</option>
+                                <option value="completed"> Completed</option>
+                                <option value="asc">Tanggal termuda</option>
+                                <option value="desc">Tanggal tertua</option>
+                            </select>
+                            <button type="button" id="filter-btn" class="px-4 py-2 bg-cyan-600 text-white font-semibold rounded-lg shadow hover:bg-cyan-700 transition w-full sm:w-auto">
+                                Filter
+                            </button>
+                        </div>
+
+                         <div class="flex flex-col sm:flex-row gap-4 mb-2 items-center">
+                            <button type="button" id="delete-all" class="px-4 py-2 rounded-lg bg-red-600 font-semibold text-white shadow hover:bg-red-700 transition w-full sm:w-auto">Reset</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        
+                        <table class="w-full border border-gray-300 rounded-xl table-fixed bg-white text-sm">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="font-semibold pl-4 border-b border-gray-300 text-gray-800 text-left py-3 w-[100%]">Task</th>
+                                    <th class="font-semibold border-b border-gray-300 text-gray-800 text-center py-3 w-[100%] px-4">Date</th>
+                                    <th class="font-semibold border-b border-gray-300 text-gray-800 text-center py-3 w-[100%] px-4">Status</th>
+                                    <th class="font-semibold pr-3 border-b border-gray-300 text-gray-800 text-right py-3 w-[100%]">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="px-2" id="todo-list">
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
             </div>
-           
-            <table class="w-100 border rounded table-fixed" border="1">
-                 <caption class="caption-top my-5">
-                      <span class="font-semibold">  Taks List</span>
-                </caption>
-                <thead>
-                    <tr >
-                        <th class=" font-semibold pl-4 w-80%" align="left">Task</th>
-                         <th class=" font-semibold  w-80%" align="center">Date</th>
-                        <th class=" font-semibold w-20% pr-4" align="right">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="px-2" id="todo-list">
-                   
-                </tbody>
-            </table>
-        </section>
+        </div>
+                <!-- <footer class="block w-100 text-gray-700 text-sm font-semibold">
+                Author: M.Miftakhudin@2025
+            </footer> -->
     </div>
-</div>
-<script src="js/script.js"></script>
+   
+    <script src="js/script.js"></script>
+    <footer class="fixed bottom-4 left-1/2 -translate-x-1/2 px-6 py-2 text-gray-700 text-sm font-italic font-semibold z-50">
+  <i>  M.Miftakhudin@2025</i>
+</footer>
 </body>
 </html>
